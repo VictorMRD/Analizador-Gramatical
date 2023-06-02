@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Trabajo realizado por 4 integrantes: -->
+    <!-- 
+        Victor Martin Rodriguez Dominguez
+        Kenneth de Guadalupe Quintero Valles
+        Jorge Barajas Mayer
+        Jose Hiram Lopez camacho
+     -->
+    <p>Buenas noches profesor</p>
+    <p>Por favor revise la consola para mirar los resultados!</p>
+    <script>
+        function validate(input) {
+            if (input.length === 0) {
+            return false;
+            } else if (input === 'a') {
+            return true;
+            } else if (input[0] === 'a' && validateB(input.substring(1))) {
+            return true;
+            } else if (input[0] === 'a' && validateC(input.substring(1))) {
+            return true;
+            } else {
+            return false;
+            }
+        }
+        
+        function validateB(input) {
+            if (input.length === 0) {
+            return false;
+            } else {
+            let i = 0;
+            while (i < input.length && input[i] === 'b') {
+                i++;
+            }
+        
+            while (i < input.length && input[i] === 'c') {
+                i++;
+            }
+        
+            if (i > 0 && i < input.length && validateC(input.substring(i))) {
+                return true;
+            } else {
+                return false;
+            }
+            }
+        }
+        
+        function validateC(input) {
+            if (input.length === 0) {
+            return true;
+            } else if ((input[0] === 'c' || input[0] === 'a') && validateC(input.substring(1))) {
+            return true;
+            } else if (input[0] === 'b') {
+            return true;
+            } else {
+            return false;
+            }
+        }
+        
+        // Generar casos de prueba
+        const testCases = [
+            'a',
+            'ac',
+            'ba',
+            'aab',
+            'bc',
+            'abb',
+            'accba',
+            'acbac',
+            'aabcb',
+            'abccab',
+            'cba',
+            'abc',
+            'abbac',
+            'cb',
+            'baaab',
+            'bcc',
+            'ccc',
+            'aacbbc',
+            'bbabac',
+            'bacbab'
+        ];
+        
+        // Ejecutar casos de prueba y mostrar resultados
+        testCases.forEach((testCase) => {
+            console.log(`El resultado del caso '${testCase}' fue: ${validate(testCase)}`);
+        });
+    </script>
+</body>
+</html>
